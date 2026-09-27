@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Notice Board</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">N</div>
+    <div class="brand">
+      <h1>Digital Notice Board</h1>
+      <p>College updates, all in one place</p>
+    </div>
+    <button id="adminToggle" class="outline-btn" type="button">＋ Add notice</button>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">STUDENT PORTAL</p>
+        <h2>Stay informed. <span>Stay ahead.</span></h2>
+        <p class="subtext">Find announcements, deadlines and important college updates.</p>
+      </div>
+      <div class="welcome-icon" aria-hidden="true">📢</div>
+    </section>
+
+    <section class="stats" aria-label="Notice summary">
+      <article class="stat-card"><span class="stat-icon blue">▤</span><div><p>Total notices</p><strong id="totalCount">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon red">!</span><div><p>Important</p><strong id="importantCount">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon green">◷</span><div><p>Upcoming deadlines</p><strong id="deadlineCount">0</strong></div></article>
+    </section>
+
+    <section class="toolbar">
+      <label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="Search notices..." aria-label="Search notices"></label>
+      <select id="categoryFilter" aria-label="Filter by category">
+        <option value="All">All categories</option>
+        <option>Academic</option><option>Examination</option><option>Events</option><option>Administration</option>
+      </select>
+      <select id="priorityFilter" aria-label="Filter by priority">
+        <option value="All">All priorities</option><option>Important</option><option>Normal</option>
+      </select>
+    </section>
+
+    <section class="content-grid">
+      <div class="notice-section">
+        <div class="section-heading"><div><h3>Latest notices</h3><p>Recent announcements from your college</p></div><span id="resultCount" class="result-count"></span></div>
+        <div id="noticeList" class="notice-list"></div>
+        <div id="emptyState" class="empty-state" hidden><div>⌕</div><h3>No notices found</h3><p>Try another search or category.</p></div>
+      </div>
+      <aside class="side-column">
+        <section class="side-card urgent-card">
+          <div class="side-title"><span class="urgent-symbol">!</span><h3>Important notices</h3></div>
+          <div id="importantList" class="mini-list"></div>
+        </section>
+        <section class="side-card">
+          <div class="side-title"><span class="bookmark-symbol">♡</span><h3>Saved notices</h3></div>
+          <div id="savedList" class="mini-list"></div>
+        </section>
+        <section class="tip-card"><span>💡</span><div><strong>Quick tip</strong><p>Save a notice using the bookmark icon so you can find it quickly later.</p></div></section>
+      </aside>
+    </section>
+    <footer>Digital Notice Board <span>•</span> Simple, clear, accessible</footer>
+  </main>
+
+  <dialog id="noticeDialog">
+    <form id="noticeForm">
+      <div class="dialog-heading"><div><p class="eyebrow">ADMIN</p><h2>Add a notice</h2></div><button type="button" id="closeDialog" class="close-btn" aria-label="Close">×</button></div>
+      <label>Notice title<input id="noticeTitle" required maxlength="100" placeholder="e.g. Semester exam timetable"></label>
+      <label>Description<textarea id="noticeDescription" required rows="4" placeholder="Write the notice details..."></textarea></label>
+      <div class="form-row">
+        <label>Category<select id="noticeCategory"><option>Academic</option><option>Examination</option><option>Events</option><option>Administration</option></select></label>
+        <label>Priority<select id="noticePriority"><option>Normal</option><option>Important</option></select></label>
+      </div>
+      <label>Deadline (optional)<input id="noticeDeadline" type="date"></label>
+      <div class="dialog-actions"><button type="button" id="cancelDialog" class="outline-btn">Cancel</button><button class="primary-btn" type="submit">Publish notice</button></div>
+    </form>
+  </dialog>
+  <script src="script.js"></script>
+</body>
+</html>
